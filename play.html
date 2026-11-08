@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch the Big Idea | Krysti Horvat</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/game.css">
+</head>
+<body class="game-page">
+  <main>
+    <div class="game-header">
+      <h1>Catch the Big Idea</h1>
+      <a class="back-link" href="index.html">&larr; Back</a>
+    </div>
+
+    <div class="hud">
+      <span>Score: <strong id="score">0</strong></span>
+      <span class="lives" id="lives">♥ ♥ ♥</span>
+      <span>Best: <strong id="best">0</strong></span>
+    </div>
+
+    <div class="game-overlay">
+      <canvas id="gameCanvas"></canvas>
+
+      <div class="overlay-panel" id="startPanel">
+        <h2>Catch the Big Idea</h2>
+        <p>Ideas fall from the top &mdash; catch 💡 🚀 🎯 for points. Drop a 🗑️ in your basket and you lose a life.</p>
+        <button class="play-button" id="startButton">Play</button>
+        <p class="hint">Arrow keys / A &amp; D, or drag on touch, to move the basket.</p>
+      </div>
+
+      <div class="overlay-panel hidden" id="overPanel">
+        <h2>Game Over</h2>
+        <p id="finalScoreText">Score: 0</p>
+        <button class="play-button" id="retryButton">Play Again</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/game.js"></script>
+</body>
+</html>
