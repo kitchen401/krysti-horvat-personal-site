@@ -46,6 +46,28 @@ footer a:hover {
   text-decoration: underline;
 }
 
+.footer-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.footer-row + .footer-row {
+  margin-top: 0.5rem;
+}
+
+.footer-sep {
+  color: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer-sep {
+    color: #444;
+  }
+}
+
 h1 {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 600;
