@@ -175,7 +175,7 @@
           lives -= 1;
           updateHud();
           shakeTime = SHAKE_DURATION;
-          popups.push({ x: item.x, y: item.y, text: "✕", age: 0, maxAge: 0.55, color: "#ef4444" });
+          popups.push({ x: item.x, y: item.y, text: "BAD IDEA", age: 0, maxAge: 0.55, color: "#ef4444" });
           if (lives <= 0) {
             endGame();
             return;
