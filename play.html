@@ -21,36 +21,50 @@
       <button class="pause-button hidden" id="pauseButton" aria-label="Pause">⏸</button>
     </div>
 
-    <div class="game-overlay">
-      <canvas id="gameCanvas"></canvas>
+    <div class="game-row">
+      <aside class="game-sidebar">
+        <p class="tagline">Catch the good ideas and let the bad ones pass.</p>
+        <div class="scoring">
+          <div class="scoring-title">Scoring</div>
+          <div class="scoring-item"><span class="scoring-emoji">💡</span><span>10 pts</span></div>
+          <div class="scoring-item"><span class="scoring-emoji">🚀</span><span>15 pts</span></div>
+          <div class="scoring-item"><span class="scoring-emoji">🎯</span><span>20 pts</span></div>
+        </div>
+      </aside>
 
-      <div class="overlay-panel" id="startPanel">
-        <h2>Catch the Big Idea</h2>
-        <p>Ideas fall from the top, like they might fall to you from nowhere. Some are good and some are bad. We need to know the difference!</p>
-        <p>Catch 💡 🚀 🎯 for points. Drop a 💩 in your basket and you lose a life. Good luck!</p>
-        <button class="play-button" id="startButton">Play</button>
-        <p class="hint">Arrow keys / A &amp; D, or drag on touch, to move the basket. Press P to pause.</p>
+      <div class="game-column">
+        <div class="game-overlay">
+          <canvas id="gameCanvas"></canvas>
+
+          <div class="overlay-panel" id="startPanel">
+            <h2>Catch the Big Idea</h2>
+            <p>Ideas fall from the top, like they might fall to you from nowhere. Some are good and some are bad. We need to know the difference!</p>
+            <p>Catch 💡 🚀 🎯 for points. Drop a 💩 in your basket and you lose a life. Good luck!</p>
+            <button class="play-button" id="startButton">Play</button>
+            <p class="hint">Arrow keys / A &amp; D, or drag on touch, to move the basket. Press P to pause.</p>
+          </div>
+
+          <div class="overlay-panel hidden" id="overPanel">
+            <h2>Game Over</h2>
+            <p id="finalScoreText">Score: 0</p>
+            <button class="play-button" id="retryButton">Play Again</button>
+          </div>
+
+          <div class="overlay-panel hidden" id="pausePanel">
+            <h2>Paused</h2>
+            <button class="play-button" id="resumeButton">Resume</button>
+          </div>
+        </div>
+
+        <div class="color-picker hidden" id="colorPicker">
+          <button class="swatch selected" data-color="#7a5cff" style="background:#7a5cff" aria-label="Purple"></button>
+          <button class="swatch" data-color="#2dd4bf" style="background:#2dd4bf" aria-label="Teal"></button>
+          <button class="swatch" data-color="#fb923c" style="background:#fb923c" aria-label="Orange"></button>
+          <button class="swatch" data-color="#38bdf8" style="background:#38bdf8" aria-label="Blue"></button>
+          <button class="swatch" data-color="#f472b6" style="background:#f472b6" aria-label="Pink"></button>
+          <button class="swatch" data-color="#34d399" style="background:#34d399" aria-label="Green"></button>
+        </div>
       </div>
-
-      <div class="overlay-panel hidden" id="overPanel">
-        <h2>Game Over</h2>
-        <p id="finalScoreText">Score: 0</p>
-        <button class="play-button" id="retryButton">Play Again</button>
-      </div>
-
-      <div class="overlay-panel hidden" id="pausePanel">
-        <h2>Paused</h2>
-        <button class="play-button" id="resumeButton">Resume</button>
-      </div>
-    </div>
-
-    <div class="color-picker hidden" id="colorPicker">
-      <button class="swatch selected" data-color="#7a5cff" style="background:#7a5cff" aria-label="Purple"></button>
-      <button class="swatch" data-color="#2dd4bf" style="background:#2dd4bf" aria-label="Teal"></button>
-      <button class="swatch" data-color="#fb923c" style="background:#fb923c" aria-label="Orange"></button>
-      <button class="swatch" data-color="#38bdf8" style="background:#38bdf8" aria-label="Blue"></button>
-      <button class="swatch" data-color="#f472b6" style="background:#f472b6" aria-label="Pink"></button>
-      <button class="swatch" data-color="#34d399" style="background:#34d399" aria-label="Green"></button>
     </div>
   </main>
 
