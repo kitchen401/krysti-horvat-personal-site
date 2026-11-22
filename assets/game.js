@@ -165,24 +165,8 @@
     }
 
     var basketTop = height - basket.height - 10;
-    ctx.fillStyle = "#7a5cff";
-    ctx.beginPath();
-    var r = 10;
-    var x = basket.x;
-    var y = basketTop;
-    var w = basket.width;
-    var h = basket.height;
-    ctx.moveTo(x + r, y);
-    ctx.lineTo(x + w - r, y);
-    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-    ctx.lineTo(x + w, y + h - r);
-    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    ctx.lineTo(x + r, y + h);
-    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-    ctx.lineTo(x, y + r);
-    ctx.quadraticCurveTo(x, y, x + r, y);
-    ctx.closePath();
-    ctx.fill();
+    ctx.font = basket.height + "px sans-serif";
+    ctx.fillText("💩", basket.x + basket.width / 2, basketTop + basket.height / 2);
   }
 
   function loop(timestamp) {
