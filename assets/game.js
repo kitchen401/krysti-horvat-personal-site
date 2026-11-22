@@ -3,8 +3,8 @@
 
   var GOOD_ITEMS = [
     { emoji: "💡", points: 10 }, // 💡
-    { emoji: "🚀", points: 15 }, // 🚀
-    { emoji: "🎯", points: 20 }  // 🎯
+    { emoji: "🎯", points: 15 }, // 🎯
+    { emoji: "🚀", points: 20 }  // 🚀
   ];
   var BAD_ITEM = { emoji: "💩" }; // 💩
   var BAD_CHANCE = 0.22;
