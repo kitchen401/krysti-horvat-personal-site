@@ -6,10 +6,12 @@
     { emoji: "🚀", points: 15 }, // 🚀
     { emoji: "🎯", points: 20 }  // 🎯
   ];
-  var BAD_ITEM = { emoji: "🗑️" }; // 🗑️
+  var BAD_ITEM = { emoji: "💩" }; // 💩
   var BAD_CHANCE = 0.22;
   var START_LIVES = 3;
   var HIGH_SCORE_KEY = "catchTheBigIdeaHighScore";
+  var BASKET_COLOR_KEY = "catchTheBigIdeaBasketColor";
+  var DEFAULT_BASKET_COLOR = "#7a5cff";
 
   var canvas = document.getElementById("gameCanvas");
   var ctx = canvas.getContext("2d");
@@ -22,9 +24,12 @@
   var startButton = document.getElementById("startButton");
   var retryButton = document.getElementById("retryButton");
 
+  var colorPicker = document.getElementById("colorPicker");
+  var swatches = colorPicker ? colorPicker.querySelectorAll(".swatch") : [];
+
   var width = 0;
   var height = 0;
-  var basket = { x: 0, width: 70, height: 36, speed: 420 };
+  var basket = { x: 0, width: 70, height: 36, speed: 420, color: DEFAULT_BASKET_COLOR };
   var items = [];
   var score = 0;
   var lives = START_LIVES;
@@ -52,6 +57,30 @@
       localStorage.setItem(HIGH_SCORE_KEY, String(value));
     } catch (e) {
       /* ignore storage failures */
+    }
+  }
+
+  function getStoredBasketColor() {
+    try {
+      return localStorage.getItem(BASKET_COLOR_KEY) || DEFAULT_BASKET_COLOR;
+    } catch (e) {
+      return DEFAULT_BASKET_COLOR;
+    }
+  }
+
+  function setStoredBasketColor(value) {
+    try {
+      localStorage.setItem(BASKET_COLOR_KEY, value);
+    } catch (e) {
+      /* ignore storage failures */
+    }
+  }
+
+  function selectBasketColor(color) {
+    basket.color = color;
+    setStoredBasketColor(color);
+    for (var i = 0; i < swatches.length; i++) {
+      swatches[i].classList.toggle("selected", swatches[i].dataset.color === color);
     }
   }
 
@@ -165,8 +194,24 @@
     }
 
     var basketTop = height - basket.height - 10;
-    ctx.font = basket.height + "px sans-serif";
-    ctx.fillText("💩", basket.x + basket.width / 2, basketTop + basket.height / 2);
+    ctx.fillStyle = basket.color;
+    ctx.beginPath();
+    var r = 10;
+    var x = basket.x;
+    var y = basketTop;
+    var w = basket.width;
+    var h = basket.height;
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+    ctx.fill();
   }
 
   function loop(timestamp) {
@@ -184,6 +229,7 @@
     resetGame();
     startPanel.classList.add("hidden");
     overPanel.classList.add("hidden");
+    if (colorPicker) colorPicker.classList.remove("hidden");
     running = true;
     lastTime = performance.now();
     requestAnimationFrame(loop);
@@ -199,10 +245,17 @@
     bestEl.textContent = String(best);
     finalScoreText.textContent = "Score: " + score + (score >= best && score > 0 ? " — new best!" : "");
     overPanel.classList.remove("hidden");
+    if (colorPicker) colorPicker.classList.add("hidden");
   }
 
   startButton.addEventListener("click", startGame);
   retryButton.addEventListener("click", startGame);
+
+  for (var si = 0; si < swatches.length; si++) {
+    swatches[si].addEventListener("click", function () {
+      selectBasketColor(this.dataset.color);
+    });
+  }
 
   window.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keys.left = true;
@@ -248,6 +301,7 @@
 
   window.addEventListener("resize", resize);
 
+  selectBasketColor(getStoredBasketColor());
   resize();
   updateHud();
 })();
