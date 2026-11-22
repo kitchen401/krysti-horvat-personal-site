@@ -112,8 +112,8 @@
 
 .hud {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   font-size: 1rem;
   margin-bottom: 0.5rem;
   font-variant-numeric: tabular-nums;
@@ -124,6 +124,7 @@
 }
 
 .pause-button {
+  margin-left: auto;
   border: none;
   background: none;
   font-size: 1.2rem;
