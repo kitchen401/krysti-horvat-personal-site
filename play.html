@@ -18,6 +18,7 @@
       <span>Score: <strong id="score">0</strong></span>
       <span class="lives" id="lives">♥ ♥ ♥</span>
       <span>Best: <strong id="best">0</strong></span>
+      <button class="pause-button hidden" id="pauseButton" aria-label="Pause">⏸</button>
     </div>
 
     <div class="game-overlay">
@@ -28,13 +29,18 @@
         <p>Ideas fall from the top, like they might fall to you from nowhere. Some are good and some are bad. We need to know the difference!</p>
         <p>Catch 💡 🚀 🎯 for points. Drop a 💩 in your basket and you lose a life. Good luck!</p>
         <button class="play-button" id="startButton">Play</button>
-        <p class="hint">Arrow keys / A &amp; D, or drag on touch, to move the basket.</p>
+        <p class="hint">Arrow keys / A &amp; D, or drag on touch, to move the basket. Press P to pause.</p>
       </div>
 
       <div class="overlay-panel hidden" id="overPanel">
         <h2>Game Over</h2>
         <p id="finalScoreText">Score: 0</p>
         <button class="play-button" id="retryButton">Play Again</button>
+      </div>
+
+      <div class="overlay-panel hidden" id="pausePanel">
+        <h2>Paused</h2>
+        <button class="play-button" id="resumeButton">Resume</button>
       </div>
     </div>
 
